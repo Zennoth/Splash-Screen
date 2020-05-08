@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class Feedback extends AppCompatActivity {
 
     private Button button;
     private Button button2;
@@ -16,11 +16,10 @@ public class MainActivity extends AppCompatActivity {
     private Button button5;
     private Button button6;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_feedback);
 
         button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -100,4 +99,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Feedback.class);
         startActivity(intent);
     }
+
 }

@@ -1,13 +1,17 @@
 package com.example.wecare;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class PeopleList extends AppCompatActivity {
 
     private Button button;
     private Button button2;
@@ -16,13 +20,27 @@ public class MainActivity extends AppCompatActivity {
     private Button button5;
     private Button button6;
 
+    RecyclerView aRecyclerView;
+    RecyclerView.LayoutManager aLayoutManager;
+    RecyclerView.Adapter aAdapter;
+    ArrayList<User> userArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        button = (Button) findViewById(R.id.button);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_people_list);
+
+        aRecyclerView = (RecyclerView) findViewById(R.id.total);
+        userArrayList = Array.data;
+
+        aRecyclerView.setHasFixedSize(true);
+        aLayoutManager = new LinearLayoutManager(this);
+        aAdapter = new MainAdapter(userArrayList);
+        aRecyclerView.setLayoutManager(aLayoutManager);
+        aRecyclerView.setAdapter(aAdapter);
+
+        button = (Button) findViewById(R.id.button3);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -30,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button2 = (Button) findViewById(R.id.button2);
+        button2 = (Button) findViewById(R.id.button4);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button3 = (Button) findViewById(R.id.button3);
+        button3 = (Button) findViewById(R.id.button5);
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button4 = (Button) findViewById(R.id.button4);
+        button4 = (Button) findViewById(R.id.button6);
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,21 +72,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button5 = (Button) findViewById(R.id.button5);
-        button5.setOnClickListener(new View.OnClickListener() {
+        button2 = (Button) findViewById(R.id.button8);
+        button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openHospital();
+                openForm();
             }
         });
 
-        button6 = (Button) findViewById(R.id.button6);
-        button6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openFeedback();
-            }
-        });
+
     }
 
     public void openTips() {
@@ -100,4 +112,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Feedback.class);
         startActivity(intent);
     }
+
+    public void openForm() {
+        Intent intent = new Intent(this, Form.class);
+        startActivity(intent);
+    }
+
 }
